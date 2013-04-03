@@ -16,3 +16,8 @@
 	   (string-set! s i c)
 	   (loop (read-char) (+ i 1))))))))
 
+
+(define (dirname path)
+  (path-strip-trailing-directory-separator (path-directory path)))
+
+(define basename path-strip-directory)
