@@ -8,4 +8,4 @@ scheme-stuff.scm: $(lib_SOURCES)
 
 scheme-stuff.o1: scheme-stuff.scm
 	rm -f scheme-stuff.o*
-	gsc scheme-stuff
+	gsc -f scheme-stuff
