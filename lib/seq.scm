@@ -27,6 +27,20 @@
   (= (string-length (string-seq-string object))
      (string-seq-offset object)))
 
+(define-type vector-seq
+  (vector read-only:)
+  (offset read-only:))
+
+(add-method (seq (vector? object))
+  (make-vector-seq object 0))
+(add-method (first (vector-seq? object))
+  (vector-ref (vector-seq-vector object) (vector-seq-offset object)))
+(add-method (rest (vector-seq? object))
+  (make-vector-seq (vector-seq-vector object) (+ 1 (vector-seq-offset object))))
+(add-method (end? (vector-seq? object))
+  (= (vector-length (vector-seq-vector object))
+     (vector-seq-offset object)))
+
 (define (for-each proc seqable)
   (let loop ((iterator (seq seqable)))
     (if (end? iterator)
