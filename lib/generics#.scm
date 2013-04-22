@@ -1,5 +1,6 @@
 (namespace ("generics#"
   dispatch-generic
+  generic-methods-box
   ))
 
 (define-macro (define-generic form)
@@ -15,13 +16,7 @@
 	 (args (cdr form))
 	 (arg-names (map cadr args)))
     `(begin
-       (let (($methods (cond
-			 ((##interp-procedure? ,generic-name)
-			  (##vector-ref (##interp-procedure-rte ,generic-name) 1))
-			 ((##closure? ,generic-name)
-			  (##closure-ref ,generic-name 1))
-			 (else
-			  (error "ADD-METHOD called on non-generic")))))
+       (let (($methods (generic-methods-box ,generic-name)))
 	 (set-box! $methods (cons
 			      (cons
 				(lambda ,arg-names

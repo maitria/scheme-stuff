@@ -12,3 +12,11 @@
       (else
        (method-loop (cdr methods-left))))))
 
+(define (generic-methods-box generic)
+  (cond
+    ((##interp-procedure? generic)
+     (##vector-ref (##interp-procedure-rte generic) 1))
+    ((##closure? generic)
+     (##closure-ref generic 1))
+    (else
+     (error (string-append (object->string generic) " is not a generic")))))
