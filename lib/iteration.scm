@@ -1,3 +1,5 @@
+(include "generics#.scm")
+(include "iteration#.scm")
 
 (define-generic (first-position object))
 (define-generic (value-at-position position))
