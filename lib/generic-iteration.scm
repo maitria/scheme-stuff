@@ -1,8 +1,16 @@
 
 (define-generic (first-position object))
-(define-generic (value-at-position first-position))
-(define-generic (next-position first-position))
-(define-generic (end-position? first-position))
+(define-generic (value-at-position position))
+(define-generic (next-position position))
+(define-generic (end-position? position))
+
+(define (for-each proc iterable)
+  (let loop ((position (first-position iterable)))
+    (if (end-position? position)
+      #!void
+      (begin
+	(proc (value-at-position position))
+	(loop (next-position position))))))
 
 (add-method (first-position (list? object))
   object)
@@ -40,12 +48,4 @@
 (add-method (end-position? (vector-position? object))
   (= (vector-length (vector-position-vector object))
      (vector-position-offset object)))
-
-(define (for-each proc first-positionable)
-  (let loop ((position (first-position first-positionable)))
-    (if (end-position? position)
-      #!void
-      (begin
-	(proc (value-at-position position))
-	(loop (next-position position))))))
 
