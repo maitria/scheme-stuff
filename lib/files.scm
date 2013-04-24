@@ -1,3 +1,4 @@
+(include "iteration#.scm")
 
 (define (read-file f)
   (with-input-from-file f
@@ -16,6 +17,14 @@
 	   (string-set! s i c)
 	   (loop (read-char) (+ i 1))))))))
 
+(add-method (first-position (input-port? port))
+  (producer->position
+    (lambda ()
+      (let ((value (read-char port)))
+	(if (eof-object? value)
+	  (close-input-port port))
+	value))
+    eof-object?))
 
 (define (dirname path)
   (path-strip-trailing-directory-separator (path-directory path)))
