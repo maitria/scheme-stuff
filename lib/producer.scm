@@ -30,6 +30,9 @@
     end-sentinel?
     #f))
 
+(add-method (first-position (producer-position? p))
+  p)
+
 (add-method (value-at-position (producer-position? p))
   (producer-position-value p))
 
