@@ -1,5 +1,6 @@
 (include "lib/combinations.scm")
 (include "lib/generics.scm")
+(include "lib/coerce.scm")
 (include "lib/iteration.scm")
 (include "lib/buffer.scm")
 (include "lib/factors.scm")
