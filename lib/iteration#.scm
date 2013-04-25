@@ -2,7 +2,7 @@
 (namespace ("iteration#"
   first-position
   value-at-position
-  next-position
+  position-following
   end-position?
   
   for-each

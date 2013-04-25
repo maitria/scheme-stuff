@@ -12,7 +12,7 @@
   p)
 (add-method (value-at-position (range-position? p))
   (range-position-value p))
-(add-method (next-position (range-position? p))
+(add-method (position-following (range-position? p))
   (make-range-position
     (+ (range-position-value p) (range-position-step p))
     (range-position-limit p)

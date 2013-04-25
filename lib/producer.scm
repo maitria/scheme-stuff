@@ -36,7 +36,7 @@
 (add-method (value-at-position (producer-position? p))
   (producer-position-value p))
 
-(add-method (next-position (producer-position? p))
+(add-method (position-following (producer-position? p))
   (let ((cached-next-position (producer-position-next-position p)))
     (cond
       (cached-next-position
