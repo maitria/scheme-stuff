@@ -9,3 +9,4 @@
 (include "lib/range.scm")
 (include "lib/sanity.scm")
 (include "lib/functional.scm")
+(include "lib/csv.scm")
