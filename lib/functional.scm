@@ -9,3 +9,6 @@
      (lambda args
        ((car functions) (apply (apply compose (cdr functions)) args))))))
        
+(define (partial f . partial-args)
+  (lambda args
+    (apply f (append partial-args args))))
