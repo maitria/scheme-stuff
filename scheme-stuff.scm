@@ -8,3 +8,4 @@
 (include "lib/producer.scm")
 (include "lib/range.scm")
 (include "lib/sanity.scm")
+(include "lib/functional.scm")
