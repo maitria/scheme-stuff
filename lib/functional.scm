@@ -1,13 +1,9 @@
 
-(define (compose . functions)
-  (cond
-    ((null? functions)
-     (error "COMPOSE must have at least one function"))
-    ((null? (cdr functions))
-     (car functions))
-    (else
-     (lambda args
-       ((car functions) (apply (apply compose (cdr functions)) args))))))
+(define (compose function . moar-functions)
+  (if (null? moar-functions)
+    function
+    (lambda args
+      (function (apply (apply compose moar-functions) args)))))
        
 (define (partial f . partial-args)
   (lambda args
