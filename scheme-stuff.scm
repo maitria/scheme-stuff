@@ -7,6 +7,6 @@
 (include "lib/files.scm")
 (include "lib/producer.scm")
 (include "lib/range.scm")
-(include "lib/sanity.scm")
+(include "lib/indexable.scm")
 (include "lib/functional.scm")
 (include "lib/csv.scm")
