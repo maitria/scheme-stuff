@@ -42,14 +42,14 @@
       (cached-next-position
 	cached-next-position)
       (else
-	(let ((next-position (make-producer-position
-			       (producer-position-producer p)
-			       ((producer-position-producer p))
-			       (producer-position-end-value-predicate p)
-			       #f)))
-	  (producer-position-next-position-set! p next-position)
-	  next-position)))))
-
-(add-method (end-position? (producer-position? p))
-  ((producer-position-end-value-predicate p) (producer-position-value p)))
+	(let ((next-value ((producer-position-producer p))))
+	  (if ((producer-position-end-value-predicate p) next-value)
+	    *end-position*
+	    (let ((next-position (make-producer-position
+				   (producer-position-producer p)
+				   next-value
+				   (producer-position-end-value-predicate p)
+				   #f)))
+	      (producer-position-next-position-set! p next-position)
+	      next-position)))))))
 

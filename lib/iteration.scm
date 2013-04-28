@@ -1,10 +1,12 @@
 (include "generics#.scm")
 (include "iteration#.scm")
 
+(define *end-position* '())
+
 (define-generic (first-position object))
 (define-generic (value-at-position position))
 (define-generic (position-following position))
-(define-generic (end-position? position))
+(define end-position? null?)
 
 (define (for-each proc iterable)
   (let loop ((position (first-position iterable)))
@@ -20,8 +22,6 @@
   (car object))
 (add-method (position-following (list? object))
   (cdr object))
-(add-method (end-position? (list? object))
-  (null? object))
 
 (define-type string-position
   (string read-only:)
@@ -32,10 +32,10 @@
 (add-method (value-at-position (string-position? object))
   (string-ref (string-position-string object) (string-position-offset object)))
 (add-method (position-following (string-position? object))
-  (make-string-position (string-position-string object) (+ 1 (string-position-offset object))))
-(add-method (end-position? (string-position? object))
-  (= (string-length (string-position-string object))
-     (string-position-offset object)))
+  (let ((next-offset (+ 1 (string-position-offset object))))
+    (if (= next-offset (string-length (string-position-string object)))
+      *end-position*
+      (make-string-position (string-position-string object) next-offset))))
 
 (define-type vector-position
   (vector read-only:)
@@ -46,8 +46,8 @@
 (add-method (value-at-position (vector-position? object))
   (vector-ref (vector-position-vector object) (vector-position-offset object)))
 (add-method (position-following (vector-position? object))
-  (make-vector-position (vector-position-vector object) (+ 1 (vector-position-offset object))))
-(add-method (end-position? (vector-position? object))
-  (= (vector-length (vector-position-vector object))
-     (vector-position-offset object)))
+  (let ((next-offset (+ 1 (vector-position-offset object))))
+    (if (= (vector-length object) next-offset)
+      *end-position*
+      (make-vector-position (vector-position-vector object) next-offset))))
 

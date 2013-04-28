@@ -48,6 +48,13 @@ The following generic functions are used to produce lazy sequences:
 (first-position something-iterable) => #<position>
 (value-at-position position) => #<object>
 (position-following position) => #<position>
+```
+
+The following function is part of the interface, but not specialized
+for different types (because there's only one end position,
+`\*end-position\*`)
+
+```scheme
 (end-position? position) => #<boolean>
 ```
 
