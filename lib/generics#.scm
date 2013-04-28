@@ -1,6 +1,7 @@
 (namespace ("generics#"
   dispatch-generic
   generic-methods-box
+  method
   ))
 
 (define-macro (define-generic form)
