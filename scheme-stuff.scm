@@ -2,7 +2,6 @@
 (include "lib/generics.scm")
 (include "lib/coerce.scm")
 (include "lib/iteration.scm")
-(include "lib/buffer.scm")
 (include "lib/factors.scm")
 (include "lib/files.scm")
 (include "lib/producer.scm")
