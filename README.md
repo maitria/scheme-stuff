@@ -7,7 +7,8 @@ Building it
 ============
 
 If Gambit's installed and `gsc` is in the path, you should only need to run
-`make`.
+`make`.  *NOTE:* Gambit must be configured with the `--enable-auto-force`
+option for some things to work.
 
 Making it Load Automatically
 ============================
