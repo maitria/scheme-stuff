@@ -8,6 +8,12 @@
 (define-generic (position-following position))
 (define end-position? null?)
 
+(define (iterable? thing)
+  (method first-position thing))
+
+(define (position? thing)
+  (method value-at-position thing))
+
 (define (for-each proc iterable)
   (let loop ((position (first-position iterable)))
     (if (end-position? position)
