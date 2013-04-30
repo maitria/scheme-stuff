@@ -6,7 +6,6 @@
   *end-position*
 
   first-position
-  position-following
   end-position?
 
   for-each

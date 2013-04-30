@@ -47,7 +47,6 @@ The following generic functions are used to produce lazy sequences:
 
 ```scheme
 (first-position something-iterable) => #<position>
-(position-following position) => #<position>
 ```
 
 The following functions are part of the interface, but not specialized
@@ -56,6 +55,7 @@ for different types (because there's only one end position,
 
 ```scheme
 (car position) => #<object>
+(cdr position) => #<position>
 (end-position? position) => #<boolean>
 ```
 

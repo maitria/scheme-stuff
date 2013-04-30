@@ -4,7 +4,6 @@
 (define *end-position* '())
 
 (define-generic (first-position object))
-(define-generic (position-following position))
 (define end-position? null?)
 
 (define (iterable? thing)
@@ -18,9 +17,7 @@
       #!void
       (begin
 	(proc (car position))
-	(loop (position-following position))))))
+	(loop (cdr position))))))
 
 (add-method (first-position (list? object))
   object)
-(add-method (position-following (list? object))
-  (cdr object))
