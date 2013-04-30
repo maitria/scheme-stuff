@@ -34,20 +34,16 @@
 (add-method (set-nth! index (string? s) value)
   (string-set! s index value))
 
-(define-type addressable-position
-  (object read-only:)
-  (offset read-only:))
-
 (define (addressable? object)
   (and (method nth 0 object)
        (method length object)))
 
 (add-method (first-position (addressable? object))
-  (make-addressable-position object 0))
-(add-method (value-at-position (addressable-position? p))
-  (nth (addressable-position-offset p) (addressable-position-object p)))
-(add-method (position-following (addressable-position? object))
-  (let ((next-offset (+ 1 (addressable-position-offset object))))
-    (if (= next-offset (length (addressable-position-object object)))
-      *end-position*
-      (make-addressable-position (addressable-position-object object) next-offset))))
+  (define (position n)
+    (delay
+      (if (= n (length object))
+	'()
+	(cons
+	  (nth n object)
+	  (position (+ n 1))))))
+  (position 0))
