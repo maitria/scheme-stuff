@@ -17,39 +17,11 @@
 
   producer)
 
-(define-type producer-position
-  (producer read-only:)
-  (value read-only:)
-  (end-value-predicate read-only:)
-  (next-position))
-
 (define (producer->position producer end-sentinel?)
-  (make-producer-position
-    producer
-    (producer)
-    end-sentinel?
-    #f))
-
-(add-method (first-position (producer-position? p))
-  p)
-
-(add-method (value-at-position (producer-position? p))
-  (producer-position-value p))
-
-(add-method (position-following (producer-position? p))
-  (let ((cached-next-position (producer-position-next-position p)))
-    (cond
-      (cached-next-position
-	cached-next-position)
-      (else
-	(let ((next-value ((producer-position-producer p))))
-	  (if ((producer-position-end-value-predicate p) next-value)
-	    *end-position*
-	    (let ((next-position (make-producer-position
-				   (producer-position-producer p)
-				   next-value
-				   (producer-position-end-value-predicate p)
-				   #f)))
-	      (producer-position-next-position-set! p next-position)
-	      next-position)))))))
-
+  (define (position)
+    (delay
+      (let ((value (producer)))
+	(if (end-sentinel? value)
+	  '()
+	  (cons value (position))))))
+  (position))
