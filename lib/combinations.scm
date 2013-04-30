@@ -15,7 +15,7 @@
 
   (define (value)
     (if state
-      (map value-at-position (map car state))
+      (map car (map car state))
       ending-sentinel))
 
   (define (next-state state)

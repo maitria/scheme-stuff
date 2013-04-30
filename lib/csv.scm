@@ -18,7 +18,7 @@
       (set! current-position (position-following current-position)))
 
     (let loop ()
-      (define current-char (value-at-position current-position))
+      (define current-char (car current-position))
 
       (define (next)
 	(advance)
