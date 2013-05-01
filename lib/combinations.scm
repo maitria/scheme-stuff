@@ -26,7 +26,7 @@
        #f)
       (else
 	(let* ((position+1 (cdr (caar state)))
-	       (at-end? (end-position? position+1))
+	       (at-end? (null? position+1))
 	       (next-position (if at-end?
 				(cdar state)
 				position+1))

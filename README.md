@@ -50,13 +50,12 @@ The following generic functions are used to produce lazy sequences:
 ```
 
 The following functions are part of the interface, but not specialized
-for different types (because there's only one end position,
-`\*end-position\*`)
+for different types (because there's only one end position, '()).
 
 ```scheme
 (car position) => #<object>
 (cdr position) => #<position>
-(end-position? position) => #<boolean>
+(null? position) => #<boolean>
 ```
 
 Lists (or rather cons cells) are their own 'positions'.  String, vector, and
