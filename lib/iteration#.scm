@@ -3,8 +3,6 @@
   iterable?
   position?
 
-  *end-position*
-
   first-position
   end-position?
 

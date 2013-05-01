@@ -1,8 +1,6 @@
 (include "generics#.scm")
 (include "iteration#.scm")
 
-(define *end-position* '())
-
 (define-generic (first-position object))
 (define end-position? null?)
 
