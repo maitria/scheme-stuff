@@ -1,8 +1,7 @@
 (include "generics#.scm")
-(include "iteration#.scm")
 
 (define (csv-reader char-stream)
-  (define current-position (first-position char-stream))
+  (define current-position (->list char-stream))
 
   (define (producer)
 

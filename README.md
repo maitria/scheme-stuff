@@ -46,21 +46,8 @@ Lazy Sequences
 The following generic functions are used to produce lazy sequences:
 
 ```scheme
-(first-position something-iterable) => #<position>
+(->list something-iterable) => #<lazy list>
 ```
-
-The following functions are part of the interface, but not specialized
-for different types (because there's only one end position, '()).
-
-```scheme
-(car position) => #<object>
-(cdr position) => #<position>
-(null? position) => #<boolean>
-```
-
-Lists (or rather cons cells) are their own 'positions'.  String, vector, and
-input port methods are implemented.  FOR-EACH has been redefined to use
-generic iteration.
 
 Lazy ranges can be produced like so:
 

@@ -1,4 +1,3 @@
-(include "iteration#.scm")
 
 (define (combinations . lists)
 
@@ -9,8 +8,8 @@
   (define state (map
 		  (lambda (x)
 		    (cons
-		      (first-position x)
-		      (first-position x)))
+		      (->list x)
+		      (->list x)))
 		  lists))
 
   (define (value)

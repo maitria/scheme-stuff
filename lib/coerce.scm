@@ -1,17 +1,13 @@
 (include "generics#.scm")
-(include "iteration#.scm")
 
 (define-generic (->list thing))
 
-(add-method (->list (iterable? iterable))
-  (define result (cons #f '()))
-
-  (define (add thing)
-    (set-cdr! (car result) (list thing))
-    (set-car! result (cdr (car result))))
-
-  (set-car! result result)
-
-  (for-each add iterable)
-  (cdr result))
-
+(add-method (->list (list? thing))
+  (define (lazy-list-node l)
+    (delay
+      (if (null? l)
+	'()
+	(cons
+	  (car l)
+	  (lazy-list-node (cdr l))))))
+  (lazy-list-node thing))

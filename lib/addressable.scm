@@ -38,7 +38,7 @@
   (and (method nth 0 object)
        (method length object)))
 
-(add-method (first-position (addressable? object))
+(add-method (->list (addressable? object))
   (define (position n)
     (delay
       (if (= n (length object))

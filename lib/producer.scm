@@ -1,5 +1,3 @@
-(include "iteration#.scm")
-
 (define (make-producer proc)
   (define restart-proc #f)
 

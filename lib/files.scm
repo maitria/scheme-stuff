@@ -1,5 +1,3 @@
-(include "iteration#.scm")
-
 (define (read-file f)
   (with-input-from-file f
     (lambda ()
@@ -17,7 +15,7 @@
 	   (string-set! s i c)
 	   (loop (read-char) (+ i 1))))))))
 
-(add-method (first-position (input-port? port))
+(add-method (->list (input-port? port))
   (producer->position
     (lambda ()
       (let ((value (read-char port)))
