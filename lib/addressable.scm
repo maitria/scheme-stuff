@@ -1,4 +1,5 @@
 (include "generics#.scm")
+(include "addressable#.scm")
 
 (define-generic (length thing))
 (define-generic (nth index thing))
@@ -38,12 +39,17 @@
   (and (method nth 0 object)
        (method length object)))
 
-(add-method (->list (addressable? object))
-  (define (position n)
-    (delay
-      (if (= n (length object))
-	'()
-	(cons
-	  (nth n object)
-	  (position (+ n 1))))))
-  (position 0))
+(let ((list-method (method ->list '())))
+
+  (add-method (->list (addressable? object))
+    (define (position n)
+      (delay
+	(if (= n (length object))
+	  '()
+	  (cons
+	    (nth n object)
+	    (position (+ n 1))))))
+    (position 0))
+
+  (add-method (->list (list? object))
+    (list-method object)))
