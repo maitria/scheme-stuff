@@ -1,4 +1,6 @@
 
+(declare (not inline-primitives))
+
 (define (combinations . lists)
 
   (define ending-sentinel (gensym))
