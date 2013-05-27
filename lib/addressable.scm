@@ -5,11 +5,13 @@
 (define-generic (nth index thing))
 (define-generic (set-nth! index thing value))
 
-(add-method (length (list? l))
+(add-method (length (null? l))
+  0)
+(add-method (length (pair? l))
   (##length l))
-(add-method (nth index (list? l))
+(add-method (nth index (pair? l))
   (list-ref l index))
-(add-method (set-nth! index (list? l) value)
+(add-method (set-nth! index (pair? l) value)
   (let loop ((i index)
 	     (l l))
     (cond
@@ -51,5 +53,5 @@
 	    (position (+ n 1))))))
     (position 0))
 
-  (add-method (->list (list? object))
+  (add-method (->list (pair? object))
     (list-method object)))
