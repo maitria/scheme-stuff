@@ -9,3 +9,4 @@
 (include "lib/addressable.scm")
 (include "lib/functional.scm")
 (include "lib/csv.scm")
+(include "lib/fibonacci.scm")

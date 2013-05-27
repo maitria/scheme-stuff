@@ -1,0 +1,11 @@
+(include "../scheme-stuff#.scm")
+(load "scheme-stuff.o1")
+(include "expect.scm")
+
+(expect (= 1 (nth 0 (fibonacci))))
+(expect (= 1 (nth 1 (fibonacci))))
+(expect (= 2 (nth 2 (fibonacci))))
+(expect (= 3 (nth 3 (fibonacci))))
+(expect (= 5 (nth 4 (fibonacci))))
+(expect (= 8 (nth 5 (fibonacci))))
+(expect (= 13 (nth 6 (fibonacci))))
