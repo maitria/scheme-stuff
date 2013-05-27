@@ -20,3 +20,13 @@
   (lazy-node (->list iterable)))
 
 (set! map generic-lazy-map)
+
+
+(define (detect proc a-list)
+  (let loop ((l a-list))
+    (if (null? l)
+      #f
+      (if (proc (car l))
+	(car l)
+	(loop (cdr l))))))
+
