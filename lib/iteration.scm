@@ -30,3 +30,7 @@
 	(car l)
 	(loop (cdr l))))))
 
+(define (fold-left proc initial-value a-list)
+  (if (null? a-list)
+    initial-value
+    (fold-left proc (proc initial-value (car a-list)) (cdr a-list))))
